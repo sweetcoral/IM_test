@@ -16,6 +16,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //开启on监听
+    let onMessageReceived = function(event) {
+      // 收到推送的单聊、群聊、群提示、群系统通知的新消息，可通过遍历 event.data 获取消息列表数据并渲染到页面
+      // event.name - TIM.EVENT.MESSAGE_RECEIVED
+      // event.data - 存储 Message 对象的数组 - [Message]
+    };
+    app.globalData.tim.on(app.globalData.TIM.EVENT.MESSAGE_RECEIVED, onMessageReceived);
+    //开启on监听
+
+    //登录
     let promise = app.globalData.tim.login({
       userID: 'sweetcoral',
       userSig: 'eJwtzE0LgkAUheH-MuuQO*qICi1SIoISosJxOThXvfmRqJgQ-fdEXZ7nwPtlj8vdGLFjPjMNYLtlk8ZmoIwW7j*IQ-ruVLW9vS5V25JmPrcBLNfh3FsfnFrqcHYhhAkAqw5UL*aZ3HYd4WwVyud4LK*nCnKZZPqFWCTnyqrxGCkYA5VOYfiMGkllcbjFyZ79-pa8NDc_'
@@ -29,6 +39,7 @@ Page({
     }).catch(function(imError) {
       console.warn('login error:', imError); // 登录失败的相关信息
     });
+    //登录
   },
 
   /**
@@ -78,5 +89,17 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+
+  //测试函数
+  test:function() {
+    let promise = app.globalData.tim.getMyProfile();
+    promise.then(function (imResponse) {
+      console.log(imResponse.data); // 个人资料 - Profile 实例
+    }).catch(function (imError) {
+      console.warn('getMyProfile error:', imError); // 获取个人资料失败的相关信息
+    });
   }
+  //测试函数
 })

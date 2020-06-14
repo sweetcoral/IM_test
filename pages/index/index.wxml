@@ -1,1 +1,3 @@
-<view>test</view>
+<view>
+<text bindtap="test" style="font-size : 30rpx background : red">test</text>
+</view>

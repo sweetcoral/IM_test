@@ -12,7 +12,9 @@ tim.setLogLevel(0); // 普通级别，日志量较多，接入时建议使用
 // tim.setLogLevel(1); // release 级别，SDK 输出关键信息，生产环境时建议使用
 
 // 注册 COS SDK 插件
-tim.registerPlugin({ 'cos-wx-sdk': COS });
+tim.registerPlugin({
+  'cos-wx-sdk': COS
+});
 
 App({
 
@@ -46,7 +48,9 @@ App({
   },
   globalData: {
 
-    tim:tim
+    tim: tim,
+    TIM : TIM,
+    COS : COS
 
   }
 
